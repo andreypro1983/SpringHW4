@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Пользователи</title>
+</head>
+<body>
+<div th:switch="${users}">
+    <h2 th:case="null">Пользователи не найдены</h2>
+    <div th:case="*">
+        <h2>Пользователи</h2>
+        <table>
+            <thead bgcolor="#ccc">
+            <tr>
+                <th>Имя пользователя</th>
+                <th>Возраст</th>
+                <th>Город проживания</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.name}"></td>
+                <td th:text="${user.age}"></td>
+                <td th:text="${user.city}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <h2>Добавление пользователя</h2>
+    <form action="/users" method="post">
+        Имя пользователя: <input type="text" name="name"><br>
+        Возраст: <input type="number" name="age"><br>
+        Город проживания: <input type="text" name="city"><br>
+        <button type="submit">Добавить пользователя</button>
+    </form>
+</div>
+</body>
+</html>
